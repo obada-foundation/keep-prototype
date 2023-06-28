@@ -17,6 +17,33 @@
       "d0_manufacturingDate": "2019-05-24",
       "d0_purchaseDate": "2019-06-20",
       "d0_paidProducerResponsibilityFee": true,
+      "documents": [
+        {
+          "id": "1",
+          "type": "physicalAssetIdentifiers",
+          "name": "name1",
+          "description": "desc",
+          "obj": {
+            "manufacturer": "manufacturer",
+            "part_number": "part_number",
+            "serial_number": "serial_number"
+          }
+        },
+        {
+          "id": "2",
+          "type": "mainImage",
+          "name": "name2",
+          "description": "desc",
+          "image": "http://localhost:8080/img/s4h99126.8adc1156.jpeg"
+        },
+        {
+          "id": "3",
+          "type": "link",
+          "name": "name3",
+          "description": "desc",
+          "link": "http://localhost:8080/img/s4h99126.8adc1156.jpeg"
+        }
+      ],
       "d1": [
         {
           "d1_reseller": "Company",
@@ -512,6 +539,7 @@
       "d0_manufacturingDate": "2019-05-24",
       "d0_purchaseDate": "2019-06-20",
       "d0_paidProducerResponsibilityFee": true,
+      "documents": [],
       "d1": [
         {
           "d1_reseller": "Company",

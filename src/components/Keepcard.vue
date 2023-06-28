@@ -14,6 +14,7 @@
       "
     >
       <b-tooltip
+        v-if="cardDescription[card]"
         position="is-left"
         multilined
         type="is-light"
@@ -21,48 +22,45 @@
       >
         <span class="fs-keep-icon-regular">!info</span>
         <template #content>
-          <h2>{{ cardDescription[card].title }}</h2>
-          <p>{{ cardDescription[card].description }}</p>
-          <h2>Difficulty rating</h2>
-          <p>{{ cardDescription[card].difficulty }}</p>
-          <DifficultyRating :score="cardDescription[card].difficultyScore" />
+          <h2 v-if="cardDescription[card].title">{{ cardDescription[card].title }}</h2>
+          <p v-if="cardDescription[card].description">{{ cardDescription[card].description }}</p>
+          <div v-if="cardDescription[card].difficulty && cardDescription[card].difficultyScore">
+            <h2>Difficulty rating</h2>
+            <p>{{ cardDescription[card].difficulty }}</p>
+            <DifficultyRating :score="cardDescription[card].difficultyScore" />
+          </div>
         </template>
       </b-tooltip>
     </div>
-    <CardWarranty v-if="card == 0" :cardData="productData.d21" />
-    <CardResellValue v-if="card == 1" :cardData="productData.d1" />
-    <CardCertificates v-if="card == 2" :cardData="productData.d2" />
-    <CardWorkingTime v-if="card == 3" :cardData="productData.d3" />
-    <CardTechSpecs v-if="card == 4" :cardData="productData.d4" />
-    <CardDeviceStatus v-if="card == 5" :cardData="productData.d5" />
-    <CardCarbonFootprint v-if="card == 6" :cardData="productData.d6" />
-    <CardReceipt v-if="card == 7" :cardData="productData.d7" />
-    <CardTroubleshoot v-if="card == 8" :cardData="productData.d8" />
-    <CardEnergyEfficiency v-if="card == 9" :cardData="productData.d9" />
-    <CardFactoryWages v-if="card == 10" :cardData="productData.d10" />
-    <CardParts v-if="card == 11" :cardData="productData.d11" />
-    <CardRenewableEnergy v-if="card == 12" :cardData="productData.d12" />
-    <CardWorkerSatisfaction v-if="card == 13" :productData="productData" />
-    <CardRepairGuides v-if="card == 14" :cardData="productData.d14" />
-    <CardRecycledContent v-if="card == 15" :cardData="productData.d15" />
-    <CardProductRecylingIndex v-if="card == 16" :cardData="productData.d16" />
-    <CardMaterials v-if="card == 17" :cardData="productData.d17" />
-    <CardCorporateResponsibility
-      v-if="card == 18"
-      :cardData="productData.d18"
-    />
-    <CardSupplyChainTransparency
-      v-if="card == 19"
-      :cardData="productData.d19"
-    />
-    <CardProductHistory v-if="card == 20" :cardData="productData.d20" />
-    <CardProductInformation v-if="card == 21" :productData="productData" />
-    <CardKeepScore v-if="card == 22" :cardData="productData.d22" />
-    <CardCustom v-if="card == 27" :cardData="productData.d27" />
-    <CardServiceRequest v-if="card == 23" :cardData="productData.d23" />
-    <CardProductUsage v-if="card == 24" :cardData="productData.d24" />
-    <CardNearestCollectors v-if="card == 25" :cardData="productData.d25" />
-    <CardSuppliers v-if="card == 26" :cardData="productData.d26" />
+    <CardWarranty v-if="card === 0" :cardData="productData.d21" />
+    <CardResellValue v-if="card === 1" :cardData="productData.d1" />
+    <CardCertificates v-if="card === 2" :cardData="productData.d2" />
+    <CardWorkingTime v-if="card === 3" :cardData="productData.d3" />
+    <CardTechSpecs v-if="card === 4" :cardData="productData.d4" />
+    <CardDeviceStatus v-if="card === 5" :cardData="productData.d5" />
+    <CardCarbonFootprint v-if="card === 6" :cardData="productData.d6" />
+    <CardReceipt v-if="card === 7" :cardData="productData.d7" />
+    <CardTroubleshoot v-if="card === 8" :cardData="productData.d8" />
+    <CardEnergyEfficiency v-if="card === 9" :cardData="productData.d9" />
+    <CardFactoryWages v-if="card === 10" :cardData="productData.d10" />
+    <CardParts v-if="card === 11" :cardData="productData.d11" />
+    <CardRenewableEnergy v-if="card === 12" :cardData="productData.d12" />
+    <CardWorkerSatisfaction v-if="card === 13" :productData="productData" />
+    <CardRepairGuides v-if="card === 14" :cardData="productData.d14" />
+    <CardRecycledContent v-if="card === 15" :cardData="productData.d15" />
+    <CardProductRecylingIndex v-if="card === 16" :cardData="productData.d16" />
+    <CardMaterials v-if="card === 17" :cardData="productData.d17" />
+    <CardCorporateResponsibility v-if="card === 18" :cardData="productData.d18"/>
+    <CardSupplyChainTransparency v-if="card === 19" :cardData="productData.d19"/>
+    <CardProductHistory v-if="card === 20" :cardData="productData.d20" />
+    <CardProductInformation v-if="card === 21" :productData="productData" />
+    <CardKeepScore v-if="card === 22" :cardData="productData.d22" />
+    <CardServiceRequest v-if="card === 23" :cardData="productData.d23" />
+    <CardProductUsage v-if="card === 24" :cardData="productData.d24" />
+    <CardNearestCollectors v-if="card === 25" :cardData="productData.d25" />
+    <CardSuppliers v-if="card === 26" :cardData="productData.d26" />
+    <CardCustom v-if="card === 27" :cardData="productData.d27" />
+    <CardDocuments v-if="card === 28" :documents="productData.documents" />
   </div>
 </template>
 
@@ -95,6 +93,7 @@ import CardProductUsage from "@/components/CardProductUsage.vue";
 import CardNearestCollectors from "@/components/CardNearestCollectors.vue";
 import CardSuppliers from "@/components/CardSuppliers.vue";
 import CardCustom from "@/components/CardCustom.vue";
+import CardDocuments from "@/components/CardDocuments.vue";
 
 import DifficultyRating from "@/components/DifficultyRating.vue";
 
@@ -140,6 +139,7 @@ export default {
         25: "is-12",
         26: "is-12",
         27: "is-4",
+        28: "is-12",
       },
       cardDescription: {
         0: {
@@ -402,6 +402,7 @@ export default {
     CardNearestCollectors,
     CardSuppliers,
     CardCustom,
+    CardDocuments,
   },
 };
 </script>
