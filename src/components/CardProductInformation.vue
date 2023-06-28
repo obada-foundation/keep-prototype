@@ -47,8 +47,6 @@
         </div>
       </div>
     </div>
-
-    <CardProductObada v-for="card in documents" :key="card.hashUnencryptedObject" :cardData="card"/>
   </div>
 </template>
 
